@@ -1,14 +1,14 @@
 on:
   push:
     # Sequence of patterns matched against refs/tags
-    tags:
-    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    #tags:
+    #- 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 name: Upload Release Asset
 
 jobs:
-  build:
-    name: Upload Release Asset
+  windows_build:
+    name: Windows build
     runs-on: windows-latest
     strategy:
       matrix:
@@ -39,6 +39,18 @@ jobs:
         with:
           name: SportiduinoPQ-${{ steps.get_version.outputs.VERSION }}-win-${{ matrix.architecture }}
           path: dist/SportiduinoPQ.exe
+  upload_assets:
+    name: Upload assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download results from previous job
+        uses: actions/download-artifact@v1
+        with:
+          name: SportiduinoPQ-*
+      - shell: bash
+        run: |
+          ls -al SportiduinoPQ-*
+          #zip --junk-path SportiduinoPQ
       #- name: Create Release
       #  id: create_release
       #  uses: actions/create-release@v1
@@ -55,7 +67,8 @@ jobs:
       #  env:
       #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       #  with:
-      #    upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+      #    #upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+      #    upload_url: https://uploads.github.com/repos/sembruk/SportiduinoPQ/releases/${{ steps.get_version.outputs.VERSION }}/assets
       #    asset_path: ./my-artifact.zip
       #    asset_name: my-artifact.zip
       #    asset_content_type: application/zip
