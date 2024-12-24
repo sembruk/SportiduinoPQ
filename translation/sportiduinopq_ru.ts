@@ -109,7 +109,7 @@
         <translation type="obsolete">Прочитать чип содержащий журнал отметок базовой станции</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1427"/>
+        <location filename="../design.ui" line="1465"/>
         <source>Read</source>
         <translation>Читать</translation>
     </message>
@@ -329,7 +329,7 @@
         <translation>Записать настройки базовой станции по UART</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1443"/>
+        <location filename="../design.ui" line="1481"/>
         <source>Write</source>
         <translation>Записать</translation>
     </message>
@@ -339,57 +339,57 @@
         <translation type="obsolete">Быст. Отметка</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1385"/>
+        <location filename="../design.ui" line="1423"/>
         <source>18 dB</source>
         <translation>18 дБ</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1390"/>
+        <location filename="../design.ui" line="1428"/>
         <source>23 dB</source>
         <translation>23 дБ</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1395"/>
+        <location filename="../design.ui" line="1433"/>
         <source>33 dB</source>
         <translation>33 дБ</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1400"/>
+        <location filename="../design.ui" line="1438"/>
         <source>38 dB</source>
         <translation>38 дБ</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1405"/>
+        <location filename="../design.ui" line="1443"/>
         <source>43 dB</source>
         <translation>43 дБ</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1410"/>
+        <location filename="../design.ui" line="1448"/>
         <source>48 dB</source>
         <translation>48 дБ</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1365"/>
+        <location filename="../design.ui" line="1403"/>
         <source>Antenna Gain</source>
         <translation>Усил. антенны</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1514"/>
+        <location filename="../design.ui" line="1584"/>
         <source>Clear</source>
         <translation>Очистить</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1529"/>
+        <location filename="../design.ui" line="1599"/>
         <source>Chose COM-port</source>
         <translation>Выбрать COM-порт</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1534"/>
+        <location filename="../design.ui" line="1604"/>
         <source>Save log</source>
         <translation>Сохранить лог</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1539"/>
+        <location filename="../design.ui" line="1609"/>
         <source>Open help.txt</source>
         <translation>Открыть help.txt</translation>
     </message>
@@ -539,27 +539,27 @@
         <translation>Конф</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1341"/>
+        <location filename="../design.ui" line="1379"/>
         <source>MS</source>
         <translation>МС</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1353"/>
+        <location filename="../design.ui" line="1391"/>
         <source>Master Station Config</source>
         <translation>Конф. станции сопряж</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1424"/>
+        <location filename="../design.ui" line="1462"/>
         <source>Reads settings of master station</source>
         <translation>Прочитать настройки станции сопряжения</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1440"/>
+        <location filename="../design.ui" line="1478"/>
         <source>Writes settings to master station</source>
         <translation>Записать настройки станции сопряжения</translation>
     </message>
     <message>
-        <location filename="../design.ui" line="1456"/>
+        <location filename="../design.ui" line="1494"/>
         <source>Time Zone</source>
         <translation>Часовой пояс</translation>
     </message>
@@ -660,11 +660,41 @@ If enabled a special sign will be written to the card which will be read by the 
         <translation>Экспериментальный режим быстрой отметки.&amp;lt;p&amp;gt;
 Если включён, в чип будет записан специальный знак, который считывается станцией ≥vX.10.0</translation>
     </message>
+    <message>
+        <location filename="../design.ui" line="1523"/>
+        <source>Enable write protection for cards using the password (MS &gt;=v1.10.0)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../design.ui" line="1526"/>
+        <source>Write protection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../design.ui" line="1539"/>
+        <source>Enable read protection for cards using the password (MS &gt;=v1.10.0)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../design.ui" line="1542"/>
+        <source>Read protection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../design.ui" line="1351"/>
+        <source>Enable write protection for cards using the password (&gt;=vX.11.0)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../design.ui" line="1370"/>
+        <source>Enable read protection for cards using the password (&gt;=vX.11.0)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SportiduinoPqMainWindow</name>
     <message>
-        <location filename="../SportiduinoPQ.py" line="916"/>
+        <location filename="../SportiduinoPQ.py" line="935"/>
         <source>Master station is not connected</source>
         <translation>Станция сопряжения не подключена</translation>
     </message>
@@ -754,7 +784,7 @@ If enabled a special sign will be written to the card which will be read by the 
         <translation type="obsolete">Станция №: {} </translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="738"/>
+        <location filename="../SportiduinoPQ.py" line="753"/>
         <source>Total punches {}</source>
         <translation>Всего отметок {}</translation>
     </message>
@@ -809,27 +839,27 @@ If enabled a special sign will be written to the card which will be read by the 
         <translation>Настройки и пароль были успешно записаны</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="684"/>
+        <location filename="../SportiduinoPQ.py" line="699"/>
         <source>Master card to get info about a base station</source>
         <translation>мастер-чип для получения информации о базовой станции</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="689"/>
+        <location filename="../SportiduinoPQ.py" line="704"/>
         <source>Master card to set time of a base station</source>
         <translation>Мастер-чип для установки времени базовой станции</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="691"/>
+        <location filename="../SportiduinoPQ.py" line="706"/>
         <source>Master card to set number of a base station</source>
         <translation>Мастер-чип для установки номера базовой станции</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="693"/>
+        <location filename="../SportiduinoPQ.py" line="708"/>
         <source>Master card to sleep a base station</source>
         <translation>Мастер-чип для перевода базовой станции в режим сна</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="695"/>
+        <location filename="../SportiduinoPQ.py" line="710"/>
         <source>Master card to get punches log of a base station</source>
         <translation>Мастер-чип для чтения лога базовой станции</translation>
     </message>
@@ -839,7 +869,7 @@ If enabled a special sign will be written to the card which will be read by the 
         <translation type="obsolete">Мастер-чип для записи пароля и настроек базовой станции</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="740"/>
+        <location filename="../SportiduinoPQ.py" line="755"/>
         <source>Uninitialized card</source>
         <translation>Чип не инициализирован</translation>
     </message>
@@ -849,27 +879,27 @@ If enabled a special sign will be written to the card which will be read by the 
         <translation type="obsolete">Чип участника №{}</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="716"/>
+        <location filename="../SportiduinoPQ.py" line="731"/>
         <source>Init time {}</source>
         <translation>Время инициализации {}</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="718"/>
+        <location filename="../SportiduinoPQ.py" line="733"/>
         <source>Punches (Check point - Time):</source>
         <translation>Отметки (КП - Время):</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="721"/>
+        <location filename="../SportiduinoPQ.py" line="736"/>
         <source>Start</source>
         <translation>Старт</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="733"/>
+        <location filename="../SportiduinoPQ.py" line="748"/>
         <source>Finish</source>
         <translation>Финиш</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="736"/>
+        <location filename="../SportiduinoPQ.py" line="751"/>
         <source>No punches</source>
         <translation>Нет отметок</translation>
     </message>
@@ -879,7 +909,7 @@ If enabled a special sign will be written to the card which will be read by the 
         <translation type="obsolete">Версия: {}.{}.{}</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="845"/>
+        <location filename="../SportiduinoPQ.py" line="864"/>
         <source>Settings:</source>
         <translation>Настройки:</translation>
     </message>
@@ -889,102 +919,102 @@ If enabled a special sign will be written to the card which will be read by the 
         <translation type="obsolete">   Станция №: {} </translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="849"/>
+        <location filename="../SportiduinoPQ.py" line="868"/>
         <source>(Start)</source>
         <translation>(Старт)</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="851"/>
+        <location filename="../SportiduinoPQ.py" line="870"/>
         <source>(Finish)</source>
         <translation>(Финиш)</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="853"/>
+        <location filename="../SportiduinoPQ.py" line="872"/>
         <source>(Check)</source>
         <translation>(Проверка)</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="855"/>
+        <location filename="../SportiduinoPQ.py" line="874"/>
         <source>(Clear)</source>
         <translation>(Очистка)</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="868"/>
+        <location filename="../SportiduinoPQ.py" line="887"/>
         <source>   Antenna Gain: {}</source>
         <translation>   Усиление антенны: {}</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="872"/>
+        <location filename="../SportiduinoPQ.py" line="891"/>
         <source> ({:.2f} V)</source>
         <translation> ({:.2f} В)</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="875"/>
+        <location filename="../SportiduinoPQ.py" line="894"/>
         <source>Battery: OK</source>
         <translation>Батарея: в норме</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="877"/>
+        <location filename="../SportiduinoPQ.py" line="896"/>
         <source>Battery: Low</source>
         <translation>Батарея: низкий заряд</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="880"/>
+        <location filename="../SportiduinoPQ.py" line="899"/>
         <source>Mode: Active</source>
         <translation>Режим: Активный</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="882"/>
+        <location filename="../SportiduinoPQ.py" line="901"/>
         <source>Mode: Wait</source>
         <translation>Режим: Ожидание</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="884"/>
+        <location filename="../SportiduinoPQ.py" line="903"/>
         <source>Mode: Sleep</source>
         <translation>Режим: Сон</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="886"/>
+        <location filename="../SportiduinoPQ.py" line="905"/>
         <source>Clock: {}</source>
         <translation>Часы: {}</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="891"/>
+        <location filename="../SportiduinoPQ.py" line="910"/>
         <source>Alarm: {}</source>
         <translation>Будильник: {}</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="894"/>
+        <location filename="../SportiduinoPQ.py" line="913"/>
         <source>Settings displayed by UI has been chaged to the base station settings</source>
         <translation>Настройки в окне приложения изменены в соответствии с настройками базовой станции</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="912"/>
+        <location filename="../SportiduinoPQ.py" line="931"/>
         <source>Error: {}</source>
         <translation>Ошибка: {}</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="921"/>
+        <location filename="../SportiduinoPQ.py" line="940"/>
         <source>The master card has been written successfully</source>
         <translation>Мастер-чип успешно записан</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="858"/>
+        <location filename="../SportiduinoPQ.py" line="877"/>
         <source>   Active time (h): {}</source>
         <translation>   Активное время (ч): {}</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="860"/>
+        <location filename="../SportiduinoPQ.py" line="879"/>
         <source>   Check start/finish flag</source>
         <translation>   Флаг проверки старта/финиша</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="862"/>
+        <location filename="../SportiduinoPQ.py" line="881"/>
         <source>   Check card init time flag</source>
         <translation>   Флаг проверки времени инициализации чипа</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="867"/>
+        <location filename="../SportiduinoPQ.py" line="886"/>
         <source>   Fast punch flag</source>
         <translation>   Флаг быстрой отметки</translation>
     </message>
@@ -1014,7 +1044,7 @@ If enabled a special sign will be written to the card which will be read by the 
         <translation>Читаю мастер-чип с информацией о состоянии базовой станции</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="840"/>
+        <location filename="../SportiduinoPQ.py" line="859"/>
         <source>Version: {}</source>
         <translation>Версия: {}</translation>
     </message>
@@ -1034,27 +1064,27 @@ If enabled a special sign will be written to the card which will be read by the 
         <translation>Станция №: {} </translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="646"/>
+        <location filename="../SportiduinoPQ.py" line="648"/>
         <source>Start polling cards</source>
         <translation>Начало опроса чипов</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="649"/>
+        <location filename="../SportiduinoPQ.py" line="651"/>
         <source>Stop polling cards</source>
         <translation>Конец опроса чипов</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="714"/>
+        <location filename="../SportiduinoPQ.py" line="729"/>
         <source>Participant card No {}</source>
         <translation>Чип участника №{}</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="847"/>
+        <location filename="../SportiduinoPQ.py" line="866"/>
         <source>   Station No: {} </source>
         <translation>   Станция №: {} </translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="864"/>
+        <location filename="../SportiduinoPQ.py" line="883"/>
         <source>   Autosleep flag</source>
         <translation>   Флаг автосна</translation>
     </message>
@@ -1064,12 +1094,12 @@ If enabled a special sign will be written to the card which will be read by the 
         <translation>Записываю мастер-чип пароля</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="697"/>
+        <location filename="../SportiduinoPQ.py" line="712"/>
         <source>Master card to write settings to a base station</source>
         <translation>Мастер-чип для записи настроек в базовую станцию</translation>
     </message>
     <message>
-        <location filename="../SportiduinoPQ.py" line="699"/>
+        <location filename="../SportiduinoPQ.py" line="714"/>
         <source>Master card to write password to a base station</source>
         <translation>Мастер-чип для записи пароля в базовую станцию</translation>
     </message>
@@ -1102,52 +1132,52 @@ If enabled a special sign will be written to the card which will be read by the 
         <translation type="obsolete">Неизвестный тип</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="518"/>
+        <location filename="../sportiduino.py" line="534"/>
         <source>Compliant with ISO/IEC 14443-4</source>
         <translation>Совместимый с ISO/IEC 14443-4</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="519"/>
+        <location filename="../sportiduino.py" line="535"/>
         <source>Compliant with ISO/IEC 18092 (NFC)</source>
         <translation>Совместимый с ISO/IEC 18092 (NFC)</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="531"/>
+        <location filename="../sportiduino.py" line="547"/>
         <source>Not detected</source>
         <translation>Не обнаружен</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="614"/>
+        <location filename="../sportiduino.py" line="630"/>
         <source>COM error</source>
         <translation>Ошибка COM порта</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="616"/>
+        <location filename="../sportiduino.py" line="632"/>
         <source>Can&apos;t write the card ({})</source>
         <translation>Не могу записать чип ({})</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="618"/>
+        <location filename="../sportiduino.py" line="634"/>
         <source>Can&apos;t read the card ({})</source>
         <translation>Не могу прочитать чип ({})</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="620"/>
+        <location filename="../sportiduino.py" line="636"/>
         <source>Can&apos;t read EEPROM</source>
         <translation>Не могу прочитать EEPROM</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="623"/>
+        <location filename="../sportiduino.py" line="639"/>
         <source>Card is not found</source>
         <translation>Чип не обнаружен</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="625"/>
+        <location filename="../sportiduino.py" line="641"/>
         <source>Unsupported card type = {}</source>
         <translation>Тип чипа = {} не поддерживается</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="629"/>
+        <location filename="../sportiduino.py" line="645"/>
         <source>Error code {}</source>
         <translation>Код ошибки {}</translation>
     </message>
@@ -1157,37 +1187,37 @@ If enabled a special sign will be written to the card which will be read by the 
         <translation type="obsolete">Ответ Ok получен</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="544"/>
+        <location filename="../sportiduino.py" line="560"/>
         <source>Could not open port {}</source>
         <translation>Не могу открыть порт {}</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="549"/>
+        <location filename="../sportiduino.py" line="565"/>
         <source>Could not flush port {}</source>
         <translation>Не могу записать в порт {}</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="354"/>
+        <location filename="../sportiduino.py" line="370"/>
         <source>Unknown error during card reading</source>
         <translation>Произошла неизвестная ошибка в процессе чтения чипа</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="202"/>
+        <location filename="../sportiduino.py" line="218"/>
         <source>No response</source>
         <translation>Нет ответа</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="229"/>
+        <location filename="../sportiduino.py" line="245"/>
         <source>Checksum mismatch</source>
         <translation>Контрольная сумма пакета данных не совпадает</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="232"/>
+        <location filename="../sportiduino.py" line="248"/>
         <source>Error reading response: {}</source>
         <translation>Ошибка чтения ответа станции сопряжения {}</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="307"/>
+        <location filename="../sportiduino.py" line="323"/>
         <source>No Sportiduino master station found. Possible reasons: {}</source>
         <translation>Станция сопряжения не обнаружена, возможные причины: {}</translation>
     </message>
@@ -1217,37 +1247,37 @@ If enabled a special sign will be written to the card which will be read by the 
         <translation type="obsolete">Не совпадает контрольная сумма в ответе</translation>
     </message>
     <message>
-        <location filename="../basestation.py" line="202"/>
+        <location filename="../basestation.py" line="213"/>
         <source>Invalid function code</source>
         <translation>Неверный код функции</translation>
     </message>
     <message>
-        <location filename="../basestation.py" line="204"/>
+        <location filename="../basestation.py" line="215"/>
         <source>Checksum mismatch in the request</source>
         <translation>Не совпадает контрольная сумма в запросе</translation>
     </message>
     <message>
-        <location filename="../basestation.py" line="206"/>
+        <location filename="../basestation.py" line="217"/>
         <source>Invalid size of the request</source>
         <translation>Неверный размер запроса</translation>
     </message>
     <message>
-        <location filename="../basestation.py" line="208"/>
+        <location filename="../basestation.py" line="219"/>
         <source>Invalid password</source>
         <translation>Неверный пароль</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="533"/>
+        <location filename="../sportiduino.py" line="549"/>
         <source>Unknown card type: {}</source>
         <translation>Неизвестный тип чипа: {}</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="627"/>
+        <location filename="../sportiduino.py" line="643"/>
         <source>Unknown command</source>
         <translation>Неизвестная команда</translation>
     </message>
     <message>
-        <location filename="../sportiduino.py" line="468"/>
+        <location filename="../sportiduino.py" line="484"/>
         <source>The state-card not found</source>
         <translation>Мастер чип состояния не обнаружен</translation>
     </message>

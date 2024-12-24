@@ -624,6 +624,8 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
         if ms_config.timezone is not None:
             tz = timezone(ms_config.timezone)
             self.ui.cbTimeZone.setCurrentText(self.getTzName(tz))
+        self.ui.cbWriteProtection.setChecked(ms_config.write_protection)
+        self.ui.cbReadProtection.setChecked(ms_config.read_protection)
 
     @QtCore.pyqtSlot()
     @block_gui
@@ -662,9 +664,32 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
 
         try:
             tz = timedelta(seconds=self.ui.cbTimeZone.currentData())
-            self.sportiduino.write_settings(self.ui.cbMsAntennaGain.currentIndex() + 2, tz)
+            self.sportiduino.write_settings(self.ui.cbMsAntennaGain.currentIndex() + 2,
+                tz,
+                self.ui.cbWriteProtection.isChecked(),
+                self.ui.cbReadProtection.isChecked())
         except Exception as err:
             self._process_error(err)
+
+    @QtCore.pyqtSlot()
+    def on_cbWriteProtection_clicked(self):
+        if not self.ui.cbWriteProtection.isChecked():
+            self.ui.cbReadProtection.setChecked(False)
+
+    @QtCore.pyqtSlot()
+    def on_cbReadProtection_clicked(self):
+        if self.ui.cbReadProtection.isChecked():
+            self.ui.cbWriteProtection.setChecked(True)
+
+    @QtCore.pyqtSlot()
+    def on_cbWriteProtectionBs_clicked(self):
+        if not self.ui.cbWriteProtectionBs.isChecked():
+            self.ui.cbReadProtectionBs.setChecked(False)
+
+    @QtCore.pyqtSlot()
+    def on_cbReadProtectionBs_clicked(self):
+        if self.ui.cbReadProtectionBs.isChecked():
+            self.ui.cbWriteProtectionBs.setChecked(True)
 
 
     def _show_card_data(self, data, card_type=None):
@@ -817,6 +842,8 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
         self.ui.cbCheckInitTime.setChecked(bs_config.check_card_init_time)
         self.ui.cbAutosleep.setChecked(bs_config.autosleep)
         self.ui.cbFastPunchConfig.setChecked(bs_config.enable_fast_punch)
+        self.ui.cbWriteProtectionBs.setChecked(bs_config.write_protection)
+        self.ui.cbReadProtectionBs.setChecked(bs_config.read_protection)
 
         self.ui.cbAntennaGain.setCurrentIndex(bs_config.antenna_gain - 2)
 
@@ -829,6 +856,8 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
         bs_config.enable_fast_punch = self.ui.cbFastPunchConfig.isChecked()
         bs_config.antenna_gain = self.ui.cbAntennaGain.currentIndex() + 2
         bs_config.password = [self.ui.sbNewPwd1.value(), self.ui.sbNewPwd2.value(), self.ui.sbNewPwd3.value()]
+        bs_config.write_protection = self.ui.cbWriteProtectionBs.isChecked()
+        bs_config.read_protection = self.ui.cbReadProtectionBs.isChecked()
 
         return bs_config
 

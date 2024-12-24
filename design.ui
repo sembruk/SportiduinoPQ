@@ -1197,7 +1197,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>160</x>
-              <y>210</y>
+              <y>220</y>
               <width>81</width>
               <height>31</height>
              </rect>
@@ -1243,7 +1243,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>210</y>
+              <y>220</y>
               <width>141</width>
               <height>31</height>
              </rect>
@@ -1256,7 +1256,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>50</y>
+              <y>40</y>
               <width>221</width>
               <height>31</height>
              </rect>
@@ -1272,7 +1272,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>90</y>
+              <y>70</y>
               <width>221</width>
               <height>31</height>
              </rect>
@@ -1291,7 +1291,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>170</y>
+              <y>130</y>
               <width>221</width>
               <height>31</height>
              </rect>
@@ -1307,7 +1307,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>130</y>
+              <y>100</y>
               <width>221</width>
               <height>31</height>
              </rect>
@@ -1335,6 +1335,44 @@ If enabled a special sign will be written to the card which will be read by the 
              <string>Create Password Card</string>
             </property>
            </widget>
+           <widget class="QCheckBox" name="cbWriteProtectionBs">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>160</y>
+              <width>221</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>Enable write protection for cards using the password (&gt;=vX.11.0)</string>
+            </property>
+            <property name="text">
+             <string>Write protection</string>
+            </property>
+           </widget>
+           <widget class="QCheckBox" name="cbReadProtectionBs">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>190</y>
+              <width>221</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>Enable read protection for cards using the password (&gt;=vX.11.0)</string>
+            </property>
+            <property name="text">
+             <string>Read protection</string>
+            </property>
+           </widget>
           </widget>
           <widget class="QWidget" name="tab_4">
            <attribute name="title">
@@ -1346,7 +1384,7 @@ If enabled a special sign will be written to the card which will be read by the 
               <x>10</x>
               <y>10</y>
               <width>231</width>
-              <height>151</height>
+              <height>221</height>
              </rect>
             </property>
             <property name="title">
@@ -1415,7 +1453,7 @@ If enabled a special sign will be written to the card which will be read by the 
              <property name="geometry">
               <rect>
                <x>10</x>
-               <y>110</y>
+               <y>180</y>
                <width>101</width>
                <height>31</height>
               </rect>
@@ -1431,7 +1469,7 @@ If enabled a special sign will be written to the card which will be read by the 
              <property name="geometry">
               <rect>
                <x>120</x>
-               <y>110</y>
+               <y>180</y>
                <width>101</width>
                <height>31</height>
               </rect>
@@ -1470,6 +1508,38 @@ If enabled a special sign will be written to the card which will be read by the 
              </property>
              <property name="currentIndex">
               <number>-1</number>
+             </property>
+            </widget>
+            <widget class="QCheckBox" name="cbWriteProtection">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>110</y>
+               <width>221</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="toolTip">
+              <string>Enable write protection for cards using the password (MS &gt;=v1.10.0)</string>
+             </property>
+             <property name="text">
+              <string>Write protection</string>
+             </property>
+            </widget>
+            <widget class="QCheckBox" name="cbReadProtection">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>140</y>
+               <width>221</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="toolTip">
+              <string>Enable read protection for cards using the password (MS &gt;=v1.10.0)</string>
+             </property>
+             <property name="text">
+              <string>Read protection</string>
              </property>
             </widget>
            </widget>

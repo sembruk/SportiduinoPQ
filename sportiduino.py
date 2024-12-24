@@ -140,24 +140,40 @@ class Sportiduino(object):
             return 'v%d.%d.%s' % (self.major, self.minor, vers_suffix)
 
     class Config(object):
-        def __init__(self, antenna_gain=0, timezone=timedelta()):
+        def __init__(self, antenna_gain=0, timezone=timedelta(), write_protection=False, read_protection=False):
             self.antenna_gain = antenna_gain
             self.timezone = timezone
+            self.write_protection = write_protection
+            self.read_protection = read_protection
 
         @classmethod
         def unpack(cls, config_data):
-            timezone = timedelta()
+            config = cls()
+            config.antenna_gain=byte2int(config_data[0])
             if len(config_data) > 1:
                 timezone = timedelta(minutes=byte2int(config_data[1])*15)
                 if timezone < -timedelta(hours=24) or timezone > timedelta(hours=24):
                     timezone = timedelta()
-            return cls(antenna_gain=byte2int(config_data[0]), timezone=timezone)
+                config.timezone = timezone
+            # Firmware v1.10 and greater
+            if len(config_data) > 2:
+                flags = byte2int(config_data[2])
+                if flags & 0x01 > 0:
+                    config.write_protection = True
+                if flags & 0x02 > 0:
+                    config.read_protection = True
+            return config
 
         def pack(self):
             config_data = b''
             config_data += int2byte(self.antenna_gain)
-            print(self.timezone.total_seconds())
             config_data += int2byte(int(self.timezone.total_seconds()/60/15))
+            flags = 0
+            if self.write_protection:
+                flags |= 0x01
+            if self.read_protection:
+                flags |= 0x02
+            config_data += int2byte(flags)
             return config_data
 
     class SerialProtocol(object):
@@ -492,8 +508,8 @@ class Sportiduino(object):
         else:
             raise SportiduinoException("Read settings failed")
 
-    def write_settings(self, antenna_gain, timezone):
-        params = Sportiduino.Config(antenna_gain, timezone).pack()
+    def write_settings(self, antenna_gain, timezone, write_protection, read_protection):
+        params = Sportiduino.Config(antenna_gain, timezone, write_protection, read_protection).pack()
         self._send_command(Sportiduino.CMD_WRITE_SETTINGS, params)
 
     def write_pages6_7(self, page6, page7):
