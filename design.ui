@@ -384,7 +384,7 @@
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>450</y>
+              <y>440</y>
               <width>221</width>
               <height>31</height>
              </rect>
@@ -395,6 +395,38 @@ If enabled a special sign will be written to the card which will be read by the 
             </property>
             <property name="text">
              <string>Fast Punch</string>
+            </property>
+           </widget>
+           <widget class="QCheckBox" name="cbWriteProtection">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>470</y>
+              <width>221</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>Enable write protection for cards using the password (MS &gt;=v1.10.0)</string>
+            </property>
+            <property name="text">
+             <string>Write protection</string>
+            </property>
+           </widget>
+           <widget class="QCheckBox" name="cbReadProtection">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>500</y>
+              <width>221</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="toolTip">
+             <string>Enable read protection for cards using the password (MS &gt;=v1.10.0)</string>
+            </property>
+            <property name="text">
+             <string>Read protection</string>
             </property>
            </widget>
           </widget>
@@ -1384,7 +1416,7 @@ If enabled a special sign will be written to the card which will be read by the 
               <x>10</x>
               <y>10</y>
               <width>231</width>
-              <height>221</height>
+              <height>231</height>
              </rect>
             </property>
             <property name="title">
@@ -1453,7 +1485,7 @@ If enabled a special sign will be written to the card which will be read by the 
              <property name="geometry">
               <rect>
                <x>10</x>
-               <y>180</y>
+               <y>190</y>
                <width>101</width>
                <height>31</height>
               </rect>
@@ -1469,7 +1501,7 @@ If enabled a special sign will be written to the card which will be read by the 
              <property name="geometry">
               <rect>
                <x>120</x>
-               <y>180</y>
+               <y>190</y>
                <width>101</width>
                <height>31</height>
               </rect>
@@ -1510,37 +1542,106 @@ If enabled a special sign will be written to the card which will be read by the 
               <number>-1</number>
              </property>
             </widget>
-            <widget class="QCheckBox" name="cbWriteProtection">
+            <widget class="QGroupBox" name="groupBox_10">
              <property name="geometry">
               <rect>
-               <x>10</x>
+               <x>9</x>
                <y>110</y>
-               <width>221</width>
-               <height>31</height>
+               <width>211</width>
+               <height>71</height>
               </rect>
              </property>
-             <property name="toolTip">
-              <string>Enable write protection for cards using the password (MS &gt;=v1.10.0)</string>
+             <property name="title">
+              <string>Ntag Auth key</string>
              </property>
-             <property name="text">
-              <string>Write protection</string>
-             </property>
-            </widget>
-            <widget class="QCheckBox" name="cbReadProtection">
-             <property name="geometry">
-              <rect>
-               <x>10</x>
-               <y>140</y>
-               <width>221</width>
-               <height>31</height>
-              </rect>
-             </property>
-             <property name="toolTip">
-              <string>Enable read protection for cards using the password (MS &gt;=v1.10.0)</string>
-             </property>
-             <property name="text">
-              <string>Read protection</string>
-             </property>
+             <widget class="QSpinBox" name="sbNtagKey1">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>30</y>
+                <width>51</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="frame">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="maximum">
+               <number>255</number>
+              </property>
+              <property name="value">
+               <number>255</number>
+              </property>
+             </widget>
+             <widget class="QSpinBox" name="sbNtagKey2">
+              <property name="geometry">
+               <rect>
+                <x>50</x>
+                <y>30</y>
+                <width>51</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="frame">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="maximum">
+               <number>255</number>
+              </property>
+              <property name="value">
+               <number>255</number>
+              </property>
+             </widget>
+             <widget class="QSpinBox" name="sbNtagKey3">
+              <property name="geometry">
+               <rect>
+                <x>100</x>
+                <y>30</y>
+                <width>51</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="frame">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="maximum">
+               <number>255</number>
+              </property>
+              <property name="value">
+               <number>255</number>
+              </property>
+             </widget>
+             <widget class="QSpinBox" name="sbNtagKey4">
+              <property name="geometry">
+               <rect>
+                <x>150</x>
+                <y>30</y>
+                <width>51</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="frame">
+               <bool>true</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="maximum">
+               <number>255</number>
+              </property>
+              <property name="value">
+               <number>255</number>
+              </property>
+             </widget>
             </widget>
            </widget>
           </widget>

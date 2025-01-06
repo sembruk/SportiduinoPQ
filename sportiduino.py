@@ -140,11 +140,10 @@ class Sportiduino(object):
             return 'v%d.%d.%s' % (self.major, self.minor, vers_suffix)
 
     class Config(object):
-        def __init__(self, antenna_gain=0, timezone=timedelta(), write_protection=False, read_protection=False):
+        def __init__(self, antenna_gain=0, timezone=timedelta(), ntag_auth_key=(0xff, 0xff, 0xff, 0xff)):
             self.antenna_gain = antenna_gain
             self.timezone = timezone
-            self.write_protection = write_protection
-            self.read_protection = read_protection
+            self.ntag_auth_key = ntag_auth_key
 
         @classmethod
         def unpack(cls, config_data):
@@ -155,25 +154,16 @@ class Sportiduino(object):
                 if timezone < -timedelta(hours=24) or timezone > timedelta(hours=24):
                     timezone = timedelta()
                 config.timezone = timezone
-            # Firmware v1.10 and greater
-            if len(config_data) > 2:
-                flags = byte2int(config_data[2])
-                if flags & 0x01 > 0:
-                    config.write_protection = True
-                if flags & 0x02 > 0:
-                    config.read_protection = True
             return config
 
         def pack(self):
             config_data = b''
             config_data += int2byte(self.antenna_gain)
             config_data += int2byte(int(self.timezone.total_seconds()/60/15))
-            flags = 0
-            if self.write_protection:
-                flags |= 0x01
-            if self.read_protection:
-                flags |= 0x02
-            config_data += int2byte(flags)
+            config_data += int2byte(self.ntag_auth_key[0])
+            config_data += int2byte(self.ntag_auth_key[1])
+            config_data += int2byte(self.ntag_auth_key[2])
+            config_data += int2byte(self.ntag_auth_key[3])
             return config_data
 
     class SerialProtocol(object):
@@ -211,6 +201,7 @@ class Sportiduino(object):
                     old_timeout = serial.timeout
                     serial.timeout = timeout
 
+                str = ''
                 # Skip any bytes before start byte
                 while True:
                     byte = serial.read()
@@ -218,6 +209,15 @@ class Sportiduino(object):
                         raise SportiduinoTimeout(Sportiduino._translate("sportiduino", "No response"))
                     elif byte == self._start_byte:
                         break
+                    try:
+                        char = byte.decode('utf-8')
+                        if char == '\n':
+                            print(str)
+                            str = ''
+                        else:
+                            str += char
+                    except UnicodeDecodeError:
+                        continue
 
                 if timeout is not None:
                     serial.timeout = old_timeout
@@ -402,11 +402,13 @@ class Sportiduino(object):
         else:
             raise SportiduinoException("Read backup failed")
 
-    def init_card(self, card_number, fast_punch=False, page7=None):
+    def init_card(self, card_number, fast_punch=False, page7=None, write_protection=False, read_protection=False):
         """Initialize card. Set card number, init time and additional pages.
-        @param card_number: Card number (eg participant bib).
-        @param fast_punch:  Enable Fast Punch mode.
-        @param page7:       Additional page.
+        @param card_number:       Card number (eg participant bib).
+        @param fast_punch:        Enable Fast Punch mode.
+        @param page7:             Additional page.
+        @param write_protection:  Enable NTAG/MIFARE write card protection.
+        @param readCardButton:    Enable NTAG/MIFARE read card button.
         """
         page6 = b'\x00\x00\x00\x00'
         if fast_punch:
@@ -421,6 +423,14 @@ class Sportiduino(object):
         params += Sportiduino._to_str(t, 4)
         params += page6[:5]
         params += page7[:5]
+
+        flags = 0
+        if write_protection:
+            flags |= 0x01
+        if read_protection:
+            flags |= 0x02
+        params += int2byte(flags)
+
         return self._send_command(Sportiduino.CMD_INIT_CARD, params, wait_response=True, timeout=3)
 
     def init_backupreader(self):
@@ -508,8 +518,8 @@ class Sportiduino(object):
         else:
             raise SportiduinoException("Read settings failed")
 
-    def write_settings(self, antenna_gain, timezone, write_protection, read_protection):
-        params = Sportiduino.Config(antenna_gain, timezone, write_protection, read_protection).pack()
+    def write_settings(self, antenna_gain, timezone, ntag_auth_key):
+        params = Sportiduino.Config(antenna_gain, timezone, ntag_auth_key).pack()
         self._send_command(Sportiduino.CMD_WRITE_SETTINGS, params)
 
     def write_pages6_7(self, page6, page7):

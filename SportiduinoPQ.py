@@ -265,7 +265,11 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
             enable_fast_punch = False
             if self.ui.cbFastPunchCard.isChecked():
                 enable_fast_punch = True
-            code, data = self.sportiduino.init_card(card_num, fast_punch=enable_fast_punch)
+            code, data = self.sportiduino.init_card(
+                card_num,
+                fast_punch=enable_fast_punch,
+                write_protection=self.ui.cbWriteProtection.isChecked(),
+                read_protection=self.ui.cbReadProtection.isChecked())
             if code == Sportiduino.RESP_OK:
                 self.log(self.tr("The participant card No {} ({}) has been initialized successfully")
                         .format(card_num, Sportiduino.card_name(data[0])))
@@ -624,8 +628,6 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
         if ms_config.timezone is not None:
             tz = timezone(ms_config.timezone)
             self.ui.cbTimeZone.setCurrentText(self.getTzName(tz))
-        self.ui.cbWriteProtection.setChecked(ms_config.write_protection)
-        self.ui.cbReadProtection.setChecked(ms_config.read_protection)
 
     @QtCore.pyqtSlot()
     @block_gui
@@ -664,10 +666,8 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
 
         try:
             tz = timedelta(seconds=self.ui.cbTimeZone.currentData())
-            self.sportiduino.write_settings(self.ui.cbMsAntennaGain.currentIndex() + 2,
-                tz,
-                self.ui.cbWriteProtection.isChecked(),
-                self.ui.cbReadProtection.isChecked())
+            ntag_key = (self.ui.sbNtagKey1.value(), self.ui.sbNtagKey2.value(), self.ui.sbNtagKey3.value(), self.ui.sbNtagKey4.value())
+            self.sportiduino.write_settings(self.ui.cbMsAntennaGain.currentIndex() + 2, tz, ntag_key)
         except Exception as err:
             self._process_error(err)
 
