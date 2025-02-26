@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>802</width>
-    <height>769</height>
+    <width>967</width>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,6 +26,18 @@
          <widget class="QLabel" name="label_8">
           <property name="enabled">
            <bool>true</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>120</width>
+            <height>0</height>
+           </size>
           </property>
           <property name="font">
            <font>
@@ -53,7 +65,7 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>150</width>
+            <width>176</width>
             <height>0</height>
            </size>
           </property>
@@ -151,24 +163,21 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>251</width>
-           <height>670</height>
+           <width>321</width>
+           <height>591</height>
           </rect>
          </property>
          <widget class="QTabWidget" name="Log">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>251</width>
-            <height>671</height>
+            <width>321</width>
+            <height>591</height>
            </rect>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
           </property>
           <property name="minimumSize">
            <size>
@@ -260,7 +269,7 @@
              <rect>
               <x>10</x>
               <y>160</y>
-              <width>221</width>
+              <width>301</width>
               <height>31</height>
              </rect>
             </property>
@@ -279,7 +288,7 @@
              <rect>
               <x>10</x>
               <y>110</y>
-              <width>221</width>
+              <width>301</width>
               <height>20</height>
              </rect>
             </property>
@@ -292,7 +301,7 @@
              <rect>
               <x>10</x>
               <y>260</y>
-              <width>221</width>
+              <width>301</width>
               <height>20</height>
              </rect>
             </property>
@@ -321,7 +330,7 @@
              <rect>
               <x>10</x>
               <y>410</y>
-              <width>221</width>
+              <width>301</width>
               <height>31</height>
              </rect>
             </property>
@@ -385,8 +394,8 @@
              <rect>
               <x>10</x>
               <y>440</y>
-              <width>221</width>
-              <height>31</height>
+              <width>301</width>
+              <height>29</height>
              </rect>
             </property>
             <property name="toolTip">
@@ -402,7 +411,7 @@ If enabled a special sign will be written to the card which will be read by the 
              <rect>
               <x>10</x>
               <y>470</y>
-              <width>221</width>
+              <width>301</width>
               <height>31</height>
              </rect>
             </property>
@@ -418,7 +427,7 @@ If enabled a special sign will be written to the card which will be read by the 
              <rect>
               <x>10</x>
               <y>500</y>
-              <width>221</width>
+              <width>301</width>
               <height>31</height>
              </rect>
             </property>
@@ -438,9 +447,9 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>410</y>
-              <width>231</width>
-              <height>131</height>
+              <y>320</y>
+              <width>301</width>
+              <height>91</height>
              </rect>
             </property>
             <property name="locale">
@@ -452,8 +461,8 @@ If enabled a special sign will be written to the card which will be read by the 
             <widget class="QPushButton" name="sleepCardButton">
              <property name="geometry">
               <rect>
-               <x>120</x>
-               <y>90</y>
+               <x>190</x>
+               <y>50</y>
                <width>101</width>
                <height>31</height>
               </rect>
@@ -473,7 +482,7 @@ If enabled a special sign will be written to the card which will be read by the 
               <rect>
                <x>10</x>
                <y>50</y>
-               <width>211</width>
+               <width>171</width>
                <height>31</height>
               </rect>
              </property>
@@ -515,8 +524,8 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>540</y>
-              <width>231</width>
+              <y>410</y>
+              <width>301</width>
               <height>71</height>
              </rect>
             </property>
@@ -574,9 +583,9 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>260</y>
-              <width>231</width>
-              <height>151</height>
+              <y>210</y>
+              <width>301</width>
+              <height>111</height>
              </rect>
             </property>
             <property name="locale">
@@ -588,9 +597,9 @@ If enabled a special sign will be written to the card which will be read by the 
             <widget class="QPushButton" name="setNumButton">
              <property name="geometry">
               <rect>
-               <x>120</x>
-               <y>30</y>
-               <width>101</width>
+               <x>10</x>
+               <y>70</y>
+               <width>88</width>
                <height>31</height>
               </rect>
              </property>
@@ -607,9 +616,9 @@ If enabled a special sign will be written to the card which will be read by the 
             <widget class="QPushButton" name="setStartButton">
              <property name="geometry">
               <rect>
-               <x>10</x>
-               <y>70</y>
-               <width>101</width>
+               <x>110</x>
+               <y>30</y>
+               <width>88</width>
                <height>31</height>
               </rect>
              </property>
@@ -626,9 +635,9 @@ If enabled a special sign will be written to the card which will be read by the 
             <widget class="QPushButton" name="setFinishButton">
              <property name="geometry">
               <rect>
-               <x>120</x>
+               <x>110</x>
                <y>70</y>
-               <width>101</width>
+               <width>88</width>
                <height>31</height>
               </rect>
              </property>
@@ -645,9 +654,9 @@ If enabled a special sign will be written to the card which will be read by the 
             <widget class="QPushButton" name="checkStButton">
              <property name="geometry">
               <rect>
-               <x>120</x>
-               <y>110</y>
-               <width>101</width>
+               <x>210</x>
+               <y>30</y>
+               <width>88</width>
                <height>31</height>
               </rect>
              </property>
@@ -669,9 +678,9 @@ If enabled a special sign will be written to the card which will be read by the 
             <widget class="QPushButton" name="clearStButton">
              <property name="geometry">
               <rect>
-               <x>10</x>
-               <y>110</y>
-               <width>101</width>
+               <x>210</x>
+               <y>70</y>
+               <width>88</width>
                <height>31</height>
               </rect>
              </property>
@@ -695,8 +704,8 @@ If enabled a special sign will be written to the card which will be read by the 
               <rect>
                <x>10</x>
                <y>30</y>
-               <width>101</width>
-               <height>31</height>
+               <width>88</width>
+               <height>32</height>
               </rect>
              </property>
              <property name="frame">
@@ -717,8 +726,8 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>120</y>
-              <width>231</width>
+              <y>70</y>
+              <width>301</width>
               <height>71</height>
              </rect>
             </property>
@@ -752,8 +761,8 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>190</y>
-              <width>231</width>
+              <y>140</y>
+              <width>301</width>
               <height>71</height>
              </rect>
             </property>
@@ -806,9 +815,9 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>10</y>
-              <width>231</width>
-              <height>111</height>
+              <y>0</y>
+              <width>301</width>
+              <height>71</height>
              </rect>
             </property>
             <property name="toolTip">
@@ -823,8 +832,8 @@ If enabled a special sign will be written to the card which will be read by the 
             <widget class="QPushButton" name="applyPwdButton">
              <property name="geometry">
               <rect>
-               <x>120</x>
-               <y>70</y>
+               <x>190</x>
+               <y>30</y>
                <width>101</width>
                <height>31</height>
               </rect>
@@ -891,6 +900,126 @@ If enabled a special sign will be written to the card which will be read by the 
              </property>
              <property name="maximum">
               <number>255</number>
+             </property>
+            </widget>
+           </widget>
+           <widget class="QGroupBox" name="groupBox_11">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>480</y>
+              <width>301</width>
+              <height>71</height>
+             </rect>
+            </property>
+            <property name="title">
+             <string>Ntag Auth Key</string>
+            </property>
+            <widget class="QSpinBox" name="sbAuthPwd1">
+             <property name="geometry">
+              <rect>
+               <x>10</x>
+               <y>30</y>
+               <width>51</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="frame">
+              <bool>true</bool>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="maximum">
+              <number>255</number>
+             </property>
+             <property name="value">
+              <number>255</number>
+             </property>
+            </widget>
+            <widget class="QSpinBox" name="sbAuthPwd2">
+             <property name="geometry">
+              <rect>
+               <x>60</x>
+               <y>30</y>
+               <width>51</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="frame">
+              <bool>true</bool>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="maximum">
+              <number>255</number>
+             </property>
+             <property name="value">
+              <number>255</number>
+             </property>
+            </widget>
+            <widget class="QSpinBox" name="sbAuthPwd3">
+             <property name="geometry">
+              <rect>
+               <x>110</x>
+               <y>30</y>
+               <width>51</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="frame">
+              <bool>true</bool>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="maximum">
+              <number>255</number>
+             </property>
+             <property name="value">
+              <number>255</number>
+             </property>
+            </widget>
+            <widget class="QSpinBox" name="sbAuthPwd4">
+             <property name="geometry">
+              <rect>
+               <x>160</x>
+               <y>30</y>
+               <width>51</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="frame">
+              <bool>true</bool>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="maximum">
+              <number>255</number>
+             </property>
+             <property name="value">
+              <number>255</number>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="authPasswordCardButton">
+             <property name="geometry">
+              <rect>
+               <x>220</x>
+               <y>30</y>
+               <width>78</width>
+               <height>31</height>
+              </rect>
+             </property>
+             <property name="toolTip">
+              <string>Creates the master card to read punches log of a base station</string>
+             </property>
+             <property name="locale">
+              <locale language="English" country="UnitedStates"/>
+             </property>
+             <property name="text">
+              <string>Create</string>
              </property>
             </widget>
            </widget>
@@ -975,7 +1104,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>380</y>
+              <y>320</y>
               <width>231</width>
               <height>31</height>
              </rect>
@@ -991,7 +1120,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>260</y>
+              <y>200</y>
               <width>231</width>
               <height>71</height>
              </rect>
@@ -1067,7 +1196,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>430</y>
+              <y>360</y>
               <width>231</width>
               <height>191</height>
              </rect>
@@ -1229,7 +1358,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>160</x>
-              <y>220</y>
+              <y>160</y>
               <width>81</width>
               <height>31</height>
              </rect>
@@ -1275,7 +1404,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>220</y>
+              <y>160</y>
               <width>141</width>
               <height>31</height>
              </rect>
@@ -1289,7 +1418,7 @@ If enabled a special sign will be written to the card which will be read by the 
              <rect>
               <x>10</x>
               <y>40</y>
-              <width>221</width>
+              <width>301</width>
               <height>31</height>
              </rect>
             </property>
@@ -1305,7 +1434,7 @@ If enabled a special sign will be written to the card which will be read by the 
              <rect>
               <x>10</x>
               <y>70</y>
-              <width>221</width>
+              <width>301</width>
               <height>31</height>
              </rect>
             </property>
@@ -1324,7 +1453,7 @@ If enabled a special sign will be written to the card which will be read by the 
              <rect>
               <x>10</x>
               <y>130</y>
-              <width>221</width>
+              <width>301</width>
               <height>31</height>
              </rect>
             </property>
@@ -1340,7 +1469,7 @@ If enabled a special sign will be written to the card which will be read by the 
              <rect>
               <x>10</x>
               <y>100</y>
-              <width>221</width>
+              <width>301</width>
               <height>31</height>
              </rect>
             </property>
@@ -1355,7 +1484,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>340</y>
+              <y>280</y>
               <width>231</width>
               <height>31</height>
              </rect>
@@ -1365,44 +1494,6 @@ If enabled a special sign will be written to the card which will be read by the 
             </property>
             <property name="text">
              <string>Create Password Card</string>
-            </property>
-           </widget>
-           <widget class="QCheckBox" name="cbWriteProtectionBs">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>160</y>
-              <width>221</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="toolTip">
-             <string>Enable write protection for cards using the password (&gt;=vX.11.0)</string>
-            </property>
-            <property name="text">
-             <string>Write protection</string>
-            </property>
-           </widget>
-           <widget class="QCheckBox" name="cbReadProtectionBs">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="geometry">
-             <rect>
-              <x>10</x>
-              <y>190</y>
-              <width>221</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="toolTip">
-             <string>Enable read protection for cards using the password (&gt;=vX.11.0)</string>
-            </property>
-            <property name="text">
-             <string>Read protection</string>
             </property>
            </widget>
           </widget>
@@ -1552,7 +1643,7 @@ If enabled a special sign will be written to the card which will be read by the 
               </rect>
              </property>
              <property name="title">
-              <string>Ntag Auth key</string>
+              <string>Ntag Auth Key</string>
              </property>
              <widget class="QSpinBox" name="sbNtagKey1">
               <property name="geometry">

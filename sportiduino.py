@@ -73,6 +73,7 @@ class Sportiduino(object):
     CMD_BEEP_ERROR         = b'\x58'
     CMD_BEEP_OK            = b'\x59'
     CMD_INIT_CONFIG_CARD   = b'\x5a'
+    CMD_INIT_AUTH_PWD_CARD = b'\x5b'
 
     # Protocol responses
     RESP_BACKUP         = b'\x61'
@@ -93,13 +94,14 @@ class Sportiduino(object):
     ERR_CARD_NOT_FOUND  = b'\x05'
     ERR_UNKNOWN_CMD     = b'\x06'
 
-    MASTER_CARD_GET_STATE    = b'\xF9'
-    MASTER_CARD_SET_TIME     = b'\xFA'
-    MASTER_CARD_SET_NUMBER   = b'\xFB'
-    MASTER_CARD_SLEEP        = b'\xFC'
-    MASTER_CARD_READ_BACKUP  = b'\xFD'
-    MASTER_CARD_SET_CONFIG   = b'\xFE'
-    MASTER_CARD_SET_PASSWORD = b'\xFF'
+    MASTER_CARD_AUTH_PASSWORD = b'\xF8'
+    MASTER_CARD_GET_STATE     = b'\xF9'
+    MASTER_CARD_SET_TIME      = b'\xFA'
+    MASTER_CARD_SET_NUMBER    = b'\xFB'
+    MASTER_CARD_SLEEP         = b'\xFC'
+    MASTER_CARD_READ_BACKUP   = b'\xFD'
+    MASTER_CARD_SET_CONFIG    = b'\xFE'
+    MASTER_CARD_SET_PASSWORD  = b'\xFF'
 
     MIN_CARD_NUM = 1
     MAX_CARD_NUM = 65535
@@ -481,6 +483,16 @@ class Sportiduino(object):
         params += int2byte(new_password[1])
         params += int2byte(new_password[2])
         self._send_command(Sportiduino.CMD_INIT_PASSWORD_CARD, params, wait_response=True)
+
+    def init_auth_password_card(self, ntag_auth_password):
+        """Initialize card for writing ntag auth password to base station.
+        """
+        params = b''
+        params += int2byte(ntag_auth_password[0])
+        params += int2byte(ntag_auth_password[1])
+        params += int2byte(ntag_auth_password[2])
+        params += int2byte(ntag_auth_password[4])
+        self._send_command(Sportiduino.CMD_INIT_AUTH_PWD_CARD, params, wait_response=True)
 
     def init_state_card(self):
         params = b''

@@ -86,8 +86,8 @@ class BaseStation(object):
             self.enable_fast_punch = False
             self.antenna_gain = BaseStation.ANTENNA_GAIN_33DB
             self.password = [0, 0, 0]
-            self.write_protection = False
-            self.read_protection = False
+            #self.write_protection = False
+            #self.read_protection = False
 
         @classmethod
         def unpack(cls, config_data):
@@ -103,8 +103,8 @@ class BaseStation(object):
             config.enable_fast_punch = config_data[1] & 0x80 > 0
 
             config.antenna_gain = byte2int(config_data[2] & 0x07)
-            config.write_protection = config_data[2] & 0x08 > 0
-            config.read_protection = config_data[2] & 0x10 > 0
+            #config.write_protection = config_data[2] & 0x08 > 0
+            #config.read_protection = config_data[2] & 0x10 > 0
             return config
 
         def pack(self):
@@ -124,10 +124,10 @@ class BaseStation(object):
             config_data += int2byte(flags)
 
             flags2 = self.antenna_gain
-            if self.write_protection:
-                flags2 |= 0x08
-            if self.read_protection:
-                flags2 |= 0x10
+            #if self.write_protection:
+            #    flags2 |= 0x08
+            #if self.read_protection:
+            #    flags2 |= 0x10
             config_data += int2byte(flags2)
 
             config_data += int2byte(self.password[0])

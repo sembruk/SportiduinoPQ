@@ -106,6 +106,20 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
         self.ui.sbCurPwd3.setValue(bs_config.password[2])
         self.ui.sbNewPwd3.setValue(bs_config.password[2])
 
+        ntag_key_bs = self.config.value('settings/ntag_key')
+        if ntag_key_bs is not None:
+            self.ui.sbAuthPwd1.setValue(int(ntag_key_bs[0]))
+            self.ui.sbAuthPwd2.setValue(int(ntag_key_bs[1]))
+            self.ui.sbAuthPwd3.setValue(int(ntag_key_bs[2]))
+            self.ui.sbAuthPwd4.setValue(int(ntag_key_bs[3]))
+
+        ntag_key_ms = self.config.value('master_station/ntag_key')
+        if ntag_key_ms is not None:
+            self.ui.sbNtagKey1.setValue(int(ntag_key_ms[0]))
+            self.ui.sbNtagKey2.setValue(int(ntag_key_ms[1]))
+            self.ui.sbNtagKey3.setValue(int(ntag_key_ms[2]))
+            self.ui.sbNtagKey4.setValue(int(ntag_key_ms[3]))
+
         ianaIds = QTimeZone.availableTimeZoneIds()
         all_timezones = sorted({QTimeZone(id).offsetFromUtc(datetime.now()) for id in ianaIds})
         tzlocaloffset = time.localtime().tm_gmtoff
@@ -127,10 +141,13 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
         self.config.setValue('geometry', self.saveGeometry())
         self.config.setValue('printer/name', self.printer.printerName())
         self.config.setValue('printer/outputfilename', self.printer.outputFileName())
+        self.config.setValue('master_station/ntag_key', [self.ui.sbNtagKey1.value(), self.ui.sbNtagKey2.value(), self.ui.sbNtagKey3.value(), self.ui.sbNtagKey4.value()])
 
         bs_config = self._get_config_from_ui()
         for key, value in vars(bs_config).items():
             self.config.setValue('settings/'+key, value)
+
+        self.config.setValue('settings/ntag_key', [self.ui.sbAuthPwd1.value(), self.ui.sbAuthPwd2.value(), self.ui.sbAuthPwd3.value(), self.ui.sbAuthPwd4.value()])
 
         event.accept()
 
@@ -493,6 +510,23 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
 
     @QtCore.pyqtSlot()
     @block_gui
+    def on_authPasswordCardButton_clicked(self):
+        if not self._check_connection():
+            return
+
+        try:
+            self.log("\n" + self.tr("Write the password master card"))
+
+            new_auth_password = (self.ui.sbAuthPwd1.value(), self.ui.sbAuthPwd2.value(), self.ui.sbAuthPwd3.value(), self.ui.sbAuthPwd4.value())
+            self.sportiduino.init_auth_password_card(new_auth_password)
+
+            self._master_card_ok()
+
+        except Exception as err:
+            self._process_error(err)
+
+    @QtCore.pyqtSlot()
+    @block_gui
     def on_applyPwdButton_clicked(self):
         if not self._check_connection():
             return
@@ -681,17 +715,6 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
         if self.ui.cbReadProtection.isChecked():
             self.ui.cbWriteProtection.setChecked(True)
 
-    @QtCore.pyqtSlot()
-    def on_cbWriteProtectionBs_clicked(self):
-        if not self.ui.cbWriteProtectionBs.isChecked():
-            self.ui.cbReadProtectionBs.setChecked(False)
-
-    @QtCore.pyqtSlot()
-    def on_cbReadProtectionBs_clicked(self):
-        if self.ui.cbReadProtectionBs.isChecked():
-            self.ui.cbWriteProtectionBs.setChecked(True)
-
-
     def _show_card_data(self, data, card_type=None):
         if self.ui.cbAutoPrint.isChecked():
             self.on_clearTextButton_clicked()
@@ -722,6 +745,8 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
                 text.append(self.tr("Master card to write settings to a base station"))
             elif master_type == Sportiduino.MASTER_CARD_SET_PASSWORD:
                 text.append(self.tr("Master card to write password to a base station"))
+            elif master_type == Sportiduino.MASTER_CARD_AUTH_PASSWORD:
+                text.append(self.tr("Master card to set authentication password of a base station"))
             else:
                 text.append(self.tr("Uninitialized card"))
             self.log('\n'.join(text))
@@ -842,8 +867,6 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
         self.ui.cbCheckInitTime.setChecked(bs_config.check_card_init_time)
         self.ui.cbAutosleep.setChecked(bs_config.autosleep)
         self.ui.cbFastPunchConfig.setChecked(bs_config.enable_fast_punch)
-        self.ui.cbWriteProtectionBs.setChecked(bs_config.write_protection)
-        self.ui.cbReadProtectionBs.setChecked(bs_config.read_protection)
 
         self.ui.cbAntennaGain.setCurrentIndex(bs_config.antenna_gain - 2)
 
@@ -856,8 +879,6 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
         bs_config.enable_fast_punch = self.ui.cbFastPunchConfig.isChecked()
         bs_config.antenna_gain = self.ui.cbAntennaGain.currentIndex() + 2
         bs_config.password = [self.ui.sbNewPwd1.value(), self.ui.sbNewPwd2.value(), self.ui.sbNewPwd3.value()]
-        bs_config.write_protection = self.ui.cbWriteProtectionBs.isChecked()
-        bs_config.read_protection = self.ui.cbReadProtectionBs.isChecked()
 
         return bs_config
 
