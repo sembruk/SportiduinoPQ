@@ -491,7 +491,7 @@ class Sportiduino(object):
         params += int2byte(ntag_auth_password[0])
         params += int2byte(ntag_auth_password[1])
         params += int2byte(ntag_auth_password[2])
-        params += int2byte(ntag_auth_password[4])
+        params += int2byte(ntag_auth_password[3])
         self._send_command(Sportiduino.CMD_INIT_AUTH_PWD_CARD, params, wait_response=True)
 
     def init_state_card(self):

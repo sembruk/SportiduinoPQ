@@ -3,7 +3,7 @@
 #
 #    Copyright 2018 Alexander Volikov
 #    Copyright 2018-2019 Anton Sysoev
-#    Copyright 2019-2022 Semyon Yakimov <sdyakimov@gmail.com>
+#    Copyright 2019-2025 Semyon Yakimov <sdyakimov@gmail.com>
 #
 #    This file is part of SportiduinoPQ
 #
@@ -29,6 +29,7 @@ import json
 import csv
 import design
 import functools
+import traceback
 
 from sportiduino import Sportiduino, SportiduinoTimeout
 from basestation import BaseStation
@@ -61,6 +62,11 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
         icon = self.style().standardIcon(pixmapi)
         self.ui.refreshPortsButton1.setIcon(icon)
         self.ui.refreshPortsButton2.setIcon(icon)
+
+        pixmapi = QStyle.SP_DialogResetButton
+        icon = self.style().standardIcon(pixmapi)
+        self.ui.resetNtagKeyButton.setIcon(icon)
+        self.ui.resetAuthPwdButton.setIcon(icon)
 
         self.config = config
         geometry = self.config.value('geometry')
@@ -194,6 +200,22 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
     @block_gui
     def on_refreshPortsButton2_clicked(self):
         self.refreshPorts()
+
+    @QtCore.pyqtSlot()
+    @block_gui
+    def on_resetNtagKeyButton_clicked(self):
+        self.ui.sbNtagKey1.setValue(255)
+        self.ui.sbNtagKey2.setValue(255)
+        self.ui.sbNtagKey3.setValue(255)
+        self.ui.sbNtagKey4.setValue(255)
+
+    @QtCore.pyqtSlot()
+    @block_gui
+    def on_resetAuthPwdButton_clicked(self):
+        self.ui.sbAuthPwd1.setValue(255)
+        self.ui.sbAuthPwd2.setValue(255)
+        self.ui.sbAuthPwd3.setValue(255)
+        self.ui.sbAuthPwd4.setValue(255)
 
     @QtCore.pyqtSlot()
     @block_gui
@@ -960,6 +982,7 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
 
     def _process_error(self, err):
         self.log(self.tr("Error: {}").format(err))
+        print(traceback.format_exc())
 
     def _check_connection(self):
         if not self.connected:
