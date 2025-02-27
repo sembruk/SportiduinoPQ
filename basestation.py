@@ -197,6 +197,8 @@ class BaseStation(object):
 
     @classmethod
     def _send_command(cls, port, code, parameters=None, wait_response=True, timeout=None):
+        if not port:
+            raise SportiduinoException(Sportiduino._translate("sportiduino", "Serial port not specified"))
         timeout = timeout if timeout is not None else 1
         serial = Serial(port, baudrate=9600, timeout=timeout)
         # Wakeup station

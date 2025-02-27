@@ -42,7 +42,7 @@ from PyQt5.QtCore import QLocale
 from PyQt5.QtCore import QCoreApplication
 from PyQt5.QtCore import QTimeZone
 from PyQt5.QtCore import QTimer
-from PyQt5.QtWidgets import QMessageBox, QStyle
+from PyQt5.QtWidgets import QApplication, QMessageBox, QStyle
 from six import int2byte
 
 _translate = QCoreApplication.translate
@@ -598,6 +598,8 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
         # Scroll down
         self.ui.logText.verticalScrollBar().setValue(self.ui.logText.verticalScrollBar().maximum())
 
+        QApplication.processEvents()  # Force UI update
+
         self._logger(text)
 
     @QtCore.pyqtSlot()
@@ -644,7 +646,7 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
     @block_gui
     def on_serialWriteButton_clicked(self):
         try:
-            self.log("\n" + self.tr("Writes settings and password to a base station by UART"))
+            self.log("\n" + self.tr("Write settings and password to a base station by UART"))
             port = self.ui.cbUartPort.currentText()
 
             bs_config = self._get_config_from_ui()
@@ -691,9 +693,11 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
         if not self._check_connection():
             return
 
+        self.log("\n" + self.tr("Read settings to the master station"))
         try:
             self.read_ms_config()
             self.sportiduino.beep_ok()
+            self.log(self.tr("Settings have been read successfully"))
         except Exception as err:
             self._process_error(err)
 
@@ -720,10 +724,12 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
         if not self._check_connection():
             return
 
+        self.log("\n" + self.tr("Write settings to the master station"))
         try:
             tz = timedelta(seconds=self.ui.cbTimeZone.currentData())
             ntag_key = (self.ui.sbNtagKey1.value(), self.ui.sbNtagKey2.value(), self.ui.sbNtagKey3.value(), self.ui.sbNtagKey4.value())
             self.sportiduino.write_settings(self.ui.cbMsAntennaGain.currentIndex() + 2, tz, ntag_key)
+            self.log(self.tr("Settings has been written successfully"))
         except Exception as err:
             self._process_error(err)
 

@@ -93,6 +93,8 @@ class Sportiduino(object):
     ERR_READ_EEPROM     = b'\x04'
     ERR_CARD_NOT_FOUND  = b'\x05'
     ERR_UNKNOWN_CMD     = b'\x06'
+    ERR_BAD_DATASIZE    = b'\x07'
+    ERR_BAD_SETTINGS    = b'\x08'
 
     MASTER_CARD_AUTH_PASSWORD = b'\xF8'
     MASTER_CARD_GET_STATE     = b'\xF9'
@@ -167,6 +169,9 @@ class Sportiduino(object):
             config_data += int2byte(self.ntag_auth_key[2])
             config_data += int2byte(self.ntag_auth_key[3])
             return config_data
+
+        def pack_v1_9(self):
+            return self.pack()[:2]
 
     class SerialProtocol(object):
         OFFSET = 0x1E
@@ -531,8 +536,18 @@ class Sportiduino(object):
             raise SportiduinoException("Read settings failed")
 
     def write_settings(self, antenna_gain, timezone, ntag_auth_key):
-        params = Sportiduino.Config(antenna_gain, timezone, ntag_auth_key).pack()
-        self._send_command(Sportiduino.CMD_WRITE_SETTINGS, params)
+        config = Sportiduino.Config(antenna_gain, timezone, ntag_auth_key)
+        params = config.pack()
+        for i in range(2):
+            try:
+                self._send_command(Sportiduino.CMD_WRITE_SETTINGS, params)
+                break
+            except SportiduinoRespError as e:
+                if e.code == Sportiduino.ERR_BAD_DATASIZE:
+                    # Try again with Config v1.9
+                    params = config.pack_v1_9()
+                else:
+                    raise
 
     def write_pages6_7(self, page6, page7):
         """Write additional pages."""
@@ -649,22 +664,26 @@ class Sportiduino(object):
 
             err_code = int2byte(data[0])
             if err_code == Sportiduino.ERR_COM:
-                raise SportiduinoException(Sportiduino._translate("sportiduino", "COM error"))
+                raise SportiduinoRespError(Sportiduino._translate("sportiduino", "COM error"), err_code)
             elif err_code == Sportiduino.ERR_WRITE_CARD:
-                raise SportiduinoException(Sportiduino._translate("sportiduino", "Can't write the card ({})").format(card))
+                raise SportiduinoRespError(Sportiduino._translate("sportiduino", "Can't write the card ({})").format(card), err_code)
             elif err_code == Sportiduino.ERR_READ_CARD:
-                raise SportiduinoException(Sportiduino._translate("sportiduino", "Can't read the card ({})").format(card))
+                raise SportiduinoRespError(Sportiduino._translate("sportiduino", "Can't read the card ({})").format(card), err_code)
             elif err_code == Sportiduino.ERR_READ_EEPROM:
-                raise SportiduinoException(Sportiduino._translate("sportiduino", "Can't read EEPROM"))
+                raise SportiduinoRespError(Sportiduino._translate("sportiduino", "Can't read EEPROM"), err_code)
             elif err_code == Sportiduino.ERR_CARD_NOT_FOUND:
                 if card_type == 0 or card_type == 0xff:
-                    raise SportiduinoException(Sportiduino._translate("sportiduino", "Card is not found"))
+                    raise SportiduinoRespError(Sportiduino._translate("sportiduino", "Card is not found"), err_code)
                 else:
-                    raise SportiduinoException(Sportiduino._translate("sportiduino", "Unsupported card type = {}").format(card_type))
+                    raise SportiduinoRespError(Sportiduino._translate("sportiduino", "Unsupported card type = {}").format(card_type), err_code)
             elif err_code == Sportiduino.ERR_UNKNOWN_CMD:
-                raise SportiduinoException(Sportiduino._translate("sportiduino", "Unknown command"))
+                raise SportiduinoRespError(Sportiduino._translate("sportiduino", "Unknown command"), err_code)
+            elif err_code == Sportiduino.ERR_BAD_DATASIZE:
+                raise SportiduinoRespError(Sportiduino._translate("sportiduino", "Bad data size"), err_code)
+            elif err_code == Sportiduino.ERR_BAD_SETTINGS:
+                raise SportiduinoRespError(Sportiduino._translate("sportiduino", "Bad settings"), err_code)
             else:
-                raise SportiduinoException(Sportiduino._translate("sportiduino", "Error code {}").format(hex(byte2int(err_code))))
+                raise SportiduinoRespError(Sportiduino._translate("sportiduino", "Error code {}").format(hex(byte2int(err_code))), err_code)
         elif func == Sportiduino.RESP_OK:
             log_debug("Ok received")
 
@@ -775,6 +794,12 @@ class Sportiduino(object):
 
 class SportiduinoException(Exception):
     pass
+
+
+class SportiduinoRespError(SportiduinoException):
+    def __init__(self, message, code):
+        super().__init__(message)
+        self.code = code
 
 
 class SportiduinoTimeout(SportiduinoException):

@@ -419,7 +419,7 @@ If enabled a special sign will be written to the card which will be read by the 
              </rect>
             </property>
             <property name="toolTip">
-             <string>Enable write protection for cards using the password (MS &gt;=v1.10.0)</string>
+             <string>Enable write protection for cards using the password (MS &gt;=v1.11)</string>
             </property>
             <property name="text">
              <string>Write protection</string>
@@ -435,7 +435,7 @@ If enabled a special sign will be written to the card which will be read by the 
              </rect>
             </property>
             <property name="toolTip">
-             <string>Enable read protection for cards using the password (MS &gt;=v1.10.0)</string>
+             <string>Enable read protection for cards using the password (MS &gt;=v1.11)</string>
             </property>
             <property name="text">
              <string>Read protection</string>
@@ -915,6 +915,9 @@ If enabled a special sign will be written to the card which will be read by the 
               <height>71</height>
              </rect>
             </property>
+            <property name="toolTip">
+             <string>Ntag authentication key (≥vX.11)</string>
+            </property>
             <property name="title">
              <string> Ntag Auth Key</string>
             </property>
@@ -1016,7 +1019,7 @@ If enabled a special sign will be written to the card which will be read by the 
               </rect>
              </property>
              <property name="toolTip">
-              <string>Creates the master card to read punches log of a base station</string>
+              <string>Creates the master card to write Ntag auth password to a base station (≥vX.11)</string>
              </property>
              <property name="locale">
               <locale language="English" country="UnitedStates"/>
@@ -1672,6 +1675,9 @@ If enabled a special sign will be written to the card which will be read by the 
                <width>251</width>
                <height>71</height>
               </rect>
+             </property>
+             <property name="toolTip">
+              <string>Ntag authentication key (≥v1.11)</string>
              </property>
              <property name="title">
               <string>Ntag Auth Key</string>
