@@ -403,7 +403,7 @@
             </property>
             <property name="toolTip">
              <string>Experimental new fast punch mode.
-If enabled a special sign will be written to the card which will be read by the station ≥vX.10.0</string>
+If enabled a special sign will be written to the card which will be read by the station ≥v3.10</string>
             </property>
             <property name="text">
              <string>Fast Punch</string>
@@ -419,7 +419,7 @@ If enabled a special sign will be written to the card which will be read by the 
              </rect>
             </property>
             <property name="toolTip">
-             <string>Enable write protection for cards using the password (MS &gt;=v1.11)</string>
+             <string>Enable write protection for cards using the password (MS ≥v1.11)</string>
             </property>
             <property name="text">
              <string>Write protection</string>
@@ -435,7 +435,7 @@ If enabled a special sign will be written to the card which will be read by the 
              </rect>
             </property>
             <property name="toolTip">
-             <string>Enable read protection for cards using the password (MS &gt;=v1.11)</string>
+             <string>Enable read protection for cards using the password (MS ≥v1.11)</string>
             </property>
             <property name="text">
              <string>Read protection</string>
@@ -916,7 +916,7 @@ If enabled a special sign will be written to the card which will be read by the 
              </rect>
             </property>
             <property name="toolTip">
-             <string>Ntag authentication key (≥vX.11)</string>
+             <string>Ntag authentication key (≥v3.11)</string>
             </property>
             <property name="title">
              <string> Ntag Auth Key</string>
@@ -1019,7 +1019,7 @@ If enabled a special sign will be written to the card which will be read by the 
               </rect>
              </property>
              <property name="toolTip">
-              <string>Creates the master card to write Ntag auth password to a base station (≥vX.11)</string>
+              <string>Creates the master card to write Ntag auth password to a base station (≥v3.11)</string>
              </property>
              <property name="locale">
               <locale language="English" country="UnitedStates"/>
@@ -1368,7 +1368,7 @@ If enabled a special sign will be written to the card which will be read by the 
               </rect>
              </property>
              <property name="toolTip">
-              <string>Erase log of a base station by UART (&gt;=vX.10.0)</string>
+              <string>Erase log of a base station by UART (≥v3.10)</string>
              </property>
              <property name="text">
               <string>Erase Log</string>
@@ -1492,7 +1492,7 @@ If enabled a special sign will be written to the card which will be read by the 
              </rect>
             </property>
             <property name="toolTip">
-             <string>if enabled Clear station (≥vX.10.0) set new fast punch mode for card</string>
+             <string>if enabled Clear station (≥v3.10) set new fast punch mode for card</string>
             </property>
             <property name="text">
              <string>Fast Punch</string>
@@ -1524,7 +1524,7 @@ If enabled a special sign will be written to the card which will be read by the 
              </rect>
             </property>
             <property name="toolTip">
-             <string>Creates the master card to write password to a base station (MS &gt;=v1.9.0)</string>
+             <string>Creates the master card to write password to a base station (MS ≥v1.9.0)</string>
             </property>
             <property name="text">
              <string>Create Password Card</string>
