@@ -331,22 +331,22 @@
            <widget class="QCheckBox" name="cbAutoIncriment">
             <property name="geometry">
              <rect>
-              <x>10</x>
-              <y>410</y>
-              <width>301</width>
+              <x>190</x>
+              <y>290</y>
+              <width>91</width>
               <height>31</height>
              </rect>
             </property>
             <property name="text">
-             <string>AutoIncriment</string>
+             <string>Auto +1</string>
             </property>
            </widget>
            <widget class="QSpinBox" name="sbCardNumber">
             <property name="geometry">
              <rect>
-              <x>110</x>
+              <x>90</x>
               <y>290</y>
-              <width>121</width>
+              <width>81</width>
               <height>31</height>
              </rect>
             </property>
@@ -362,13 +362,16 @@
             <property name="maximum">
              <number>65535</number>
             </property>
+            <property name="value">
+             <number>1</number>
+            </property>
            </widget>
            <widget class="QLabel" name="label_11">
             <property name="geometry">
              <rect>
               <x>10</x>
               <y>290</y>
-              <width>91</width>
+              <width>71</width>
               <height>31</height>
              </rect>
             </property>
@@ -396,7 +399,7 @@
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>440</y>
+              <y>410</y>
               <width>301</width>
               <height>29</height>
              </rect>
@@ -413,7 +416,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>470</y>
+              <y>440</y>
               <width>301</width>
               <height>31</height>
              </rect>
@@ -429,7 +432,7 @@ If enabled a special sign will be written to the card which will be read by the 
             <property name="geometry">
              <rect>
               <x>10</x>
-              <y>500</y>
+              <y>470</y>
               <width>301</width>
               <height>31</height>
              </rect>
