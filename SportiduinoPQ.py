@@ -260,7 +260,7 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
             try:
                 data = self.sportiduino.read_card(timeout=0.2)
             except SportiduinoTimeout:
-                data = Sportiduino.raw_data_to_card_data(self.sportiduino.read_card_raw())
+                data = self.sportiduino.read_card_raw(4, 9)
             else:
                 self.sportiduino.beep_ok()
 
@@ -760,7 +760,7 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
                 text.append(self.tr("Master card to get info about a base station"))
                 self.log('\n'.join(text))
                 text = []
-                self._read_state_card(data['rawdata'])
+                self._read_state_card(data)
             elif master_type == Sportiduino.MASTER_CARD_SET_TIME:
                 text.append(self.tr("Master card to set time of a base station"))
             elif master_type == Sportiduino.MASTER_CARD_SET_NUMBER:
@@ -845,10 +845,6 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
                 bufferPunch.append(kort)
             data['punches'] = bufferPunch
 
-        if 'master_card_flag' in data:
-            del data['master_card_flag']
-        if 'master_card_type' in data:
-            del data['master_card_type']
         if 'init_timestamp' in data:
             del data['init_timestamp']
         del data['page6']
@@ -973,6 +969,10 @@ class SportiduinoPqMainWindow(QtWidgets.QMainWindow):
 
     def _read_state_card(self, data=None):
         state = self.sportiduino.read_state_card(data)
+
+        if state['version'] == b'\x00\x00\x00':
+            self.log(self.tr("Empty"))
+            return
 
         bs_state = BaseStation.State()
         bs_state.version = Sportiduino.Version(*state['version'])

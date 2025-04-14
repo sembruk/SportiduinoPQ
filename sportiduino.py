@@ -389,11 +389,17 @@ class Sportiduino(object):
             self._log_debug("Warning: %s" % msg)
         return False
 
-    def read_card_raw(self):
+    def read_card_raw(self, first_page=None, num_pages=None):
         """Reads out the RAW data from card currently inserted into the station.
+        @param first_page:   Start page number.
+        @param num_pages: Number of pages to read.
         @return: RAW card data in dictionary.
         """
-        code, data = self._send_command(Sportiduino.CMD_READ_RAW)
+        params = b''
+        if first_page is not None and num_pages is not None:
+            params += int2byte(first_page)
+            params += int2byte(num_pages)
+        code, data = self._send_command(Sportiduino.CMD_READ_RAW, params)
         if code == Sportiduino.RESP_CARD_RAW:
             return self._parse_card_raw_data(data, self._log_debug)
         else:
@@ -505,7 +511,7 @@ class Sportiduino(object):
 
     def read_state_card(self, data=None):
         if data is None:
-            data = self.read_card_raw()
+            data = self.read_card_raw(4, 9)
 
         if data[4][2] != 255 or data[4][1] != byte2int(Sportiduino.MASTER_CARD_GET_STATE):
             raise SportiduinoException(Sportiduino._translate("sportiduino", "The state-card not found"))
@@ -709,6 +715,7 @@ class Sportiduino(object):
 
         return ret
 
+    # deprecated
     @staticmethod
     def raw_data_to_card_data(data):
         ret = {}
@@ -763,10 +770,17 @@ class Sportiduino(object):
         for i in range(0, len(data), 5):
             page_num = byte2int(data[i])
             ret[page_num] = data[i + 1:i + 5]
+            if page_num == 4:
+                page_data = ret[page_num]
+                master_card_byte = byte2int(page_data[2])
+                if master_card_byte == 0xFF:
+                    ret['master_card_flag'] = True
+                    ret['master_card_type'] = page_data[1]
 
         log_debug('Card raw data:')
         for p in ret:
-            log_debug('\tpage %02i: 0x %s' % (p, ' '.join('%02x' % byte2int(c) for c in ret[p])))
+            if isinstance(p, int):
+                log_debug('\tpage %02i: 0x %s' % (p, ' '.join('%02x' % byte2int(c) for c in ret[p])))
 
         return ret
 
