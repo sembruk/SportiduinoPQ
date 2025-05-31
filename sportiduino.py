@@ -29,6 +29,7 @@ import time
 import os
 import platform
 import re
+import struct
 
 
 if PY3:
@@ -154,7 +155,11 @@ class Sportiduino(object):
             config = cls()
             config.antenna_gain=byte2int(config_data[0])
             if len(config_data) > 1:
-                timezone = timedelta(minutes=byte2int(config_data[1])*15)
+                tz = byte2int(config_data[1])
+                if tz > 127:
+                    tz -= 256
+                timezone = timedelta(minutes=tz*15)
+                print(config_data[1], byte2int(config_data[1]), timezone)
                 if timezone < -timedelta(hours=24) or timezone > timedelta(hours=24):
                     timezone = timedelta()
                 config.timezone = timezone
@@ -163,7 +168,7 @@ class Sportiduino(object):
         def pack(self):
             config_data = b''
             config_data += int2byte(self.antenna_gain)
-            config_data += int2byte(int(self.timezone.total_seconds()/60/15))
+            config_data += struct.pack('b', int(self.timezone.total_seconds()/60/15))
             config_data += int2byte(self.ntag_auth_key[0])
             config_data += int2byte(self.ntag_auth_key[1])
             config_data += int2byte(self.ntag_auth_key[2])
@@ -550,6 +555,7 @@ class Sportiduino(object):
                 break
             except SportiduinoRespError as e:
                 if e.code == Sportiduino.ERR_BAD_DATASIZE:
+                    time.sleep(0.6)
                     # Try again with Config v1.9
                     params = config.pack_v1_9()
                 else:
