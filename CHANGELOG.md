@@ -1,5 +1,12 @@
 # SportiduinoPQ Changelog
 
+## v0.13 - 2025-06-17
+
+- Ntag write/read protection by password (MS v1.11, BS v3.11)
+- Some fixes
+
+[All changes](https://github.com/sportiduino/sportiduinopq/compare/v0.12.1...v0.13)
+
 ## v0.12.1 - 2023-09-15
 
 - Fix 'auto' port
