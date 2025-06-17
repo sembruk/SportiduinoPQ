@@ -2,10 +2,10 @@ name: Build
 
 on:
   push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
-
+  #  # Sequence of patterns matched against refs/tags
+  #  tags:
+  #  - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+  workflow_dispatch: # Allow manually trigger
 
 jobs:
   build:
@@ -14,44 +14,58 @@ jobs:
       matrix:
         architecture: [x86, x64]
     name: Build on Windows ${{ matrix.architecture }}
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history and tags
+
+      #- name: Get Git Version
+      #  id: git_version
+      #  run: |
+      #    $VERSION = $(git describe --tags --long)
+      #    echo "VERSION=$VERSION" >> $GITHUB_ENV  # Set VERSION in $GITHUB_ENV for subsequent steps
+      #    echo "Git version: $VERSION"  # Optional: Debugging output
+
       - name: Set up Python
         id: set_up_python
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v5
         with:
           python-version: '3.8'
           architecture: ${{ matrix.architecture }}
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
       - name: Generate binary exe file
         run: |
           pip install pyinstaller
           pyinstaller --onefile --noconsole --add-data 'translation/*.qm;translation/' SportiduinoPQ.py
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-        shell: bash
+
       - name: Rename artifacts
         run: |
-          mv dist/SportiduinoPQ.exe dist/SportiduinoPQ-${{ steps.get_version.outputs.VERSION }}-win-${{ matrix.architecture }}.exe
+          mv dist/SportiduinoPQ.exe dist/SportiduinoPQ-${{ github.ref_name }}-win-${{ matrix.architecture }}.exe
+
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
-          #name: SportiduinoPQ-${{ steps.get_version.outputs.VERSION }}-win-${{ matrix.architecture }}
+          name: SportiduinoPQ-${{ github.ref_name }}-win-${{ matrix.architecture }}
           path: dist/*.exe
+
       - name: Generate Changelog
+        if: startsWith(github.ref, 'refs/tags/v')
         run: |
           # Get text after ## ... <version> from changelog.ru.md and changelog.en.md
           sed -n "/^##.*${{ github.ref_name }}.*$/,/^##/{/^##/d ; p}" CHANGELOG.ru.md | sed -z "s/^\n*//g" - > ${{ github.workspace }}-CHANGELOG.txt
           printf "\n---\n" >> ${{ github.workspace }}-CHANGELOG.txt
           sed -n "/^##.*${{ github.ref_name }}.*$/,/^##/{/^##/d ; p}" CHANGELOG.md | sed -z "s/^\n*//g" - >> ${{ github.workspace }}-CHANGELOG.txt
+
       - name: Release
+        if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           body_path: ${{ github.workspace }}-CHANGELOG.txt
           files: |
